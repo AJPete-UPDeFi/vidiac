@@ -13,6 +13,7 @@ import TokenomicsSmall from '../components/TokenomicsSmall';
 import TokenomicsXS from '../components/TokenomicsXS'; 
 import VidiFAQ from '../components/VidiFAQ';
 import DividendCalculator from '../components/DividendCalculator'; 
+//update deployment
 
 const Vidiac = () => {
     return (
