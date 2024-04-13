@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+
+  .bg-waves {
+    background-image: url('/images/waves.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-abstract {
+    background-image: url('/images/abstract.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .bg-hills {
+    background-image: url('/images/hills.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .bg-metro {
+    background-image: url('/images/metro.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .bg-bluegradient {
+    background-image: url('/images/bluegradient.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-greengradient {
+    background-image: url('/images/greengradient.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-greengradient2 {
+    background-image: url('/images/greengradient2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-greengradcircles {
+    background-image: url('/images/greengradcircles.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-abstractwhitegradient {
+    background-image: url('/images/abstractwhitegradient.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-pinkgradient {
+    background-image: url('/images/gradient1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .bg-gradient5 {
+    background-image: url('/images/gradient5.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+  .bg-gradient6 {
+    background-image: url('/images/gradient6.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  .custom-navbar, .custom-navbar header {
+    max-width: none !important; /* Remove the max-width restriction */
+  }
+
+  .mySwiper {
+    box-sizing: border-box;
+    max-width: 1400px;
+    width: 90vw !important; /* Or any other width */
+    height: 400px; /* Or any other height */
+    margin: auto; /* Center the swiper */
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #00000050;
+  
+    /* Center slide text vertically */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .slide-text {
+    width: 50%; /* Adjust as needed */
+    padding: 0 20px; /* Add some padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .accordian-title {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+    font-weight: 700 !important;
+    color: #0053a5 !important;
+  }
+
+  /* Spotlight Swiper Styles */
+  .spotlight-swiper-container {
+    width: 360px;
+    height: 480px;
+    min-width: 240px;
+    min-height: 320px;
+  }
+
+  @media (max-width: 640px) {
+    .spotlight-swiper-container {
+      width: 240px;
+      height: 320px;
+    }
+  }
+
+  .spotlight-swiper-container .swiper-slide {
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+}
