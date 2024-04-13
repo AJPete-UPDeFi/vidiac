@@ -9,7 +9,7 @@ export default function KeyFeatures() {
           <div className="grid grid-cols-1 justify-items-center gap-4 mt-14 md:grid-cols-2 lg:grid-cols-4">
             <div className="flex flex-col max-w-sm justify-between items-center bg-white rounded-2xl ">
             <Image src="/images/stabledivs.png" alt="Stable Dividends" width={100} height={100} className='mt-5 lg:mt-10'/>
-            <p className="font-bold text-2xl text-center p-2 text-brandGreen">Guaranteed USD Dividends</p>
+            <p className="font-bold text-2xl text-center p-2 text-brandGreen">Guaranteed USD Dividends!</p>
             <p className="text-lg font-semibold mb-5 text-center text-brandBlue lg:mb-10">Receive dividends in a USD-stable coin, ensuring the value of your dividends remain stable and unaffected by market volatility.</p>
               </div>
               <div className="flex flex-col max-w-sm justify-between items-center bg-white rounded-2xl ">
