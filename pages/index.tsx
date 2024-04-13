@@ -177,7 +177,7 @@ const Vidiac = () => {
           <div className="flex flex-col items-center text-center text-gray-900 font-bold text-2xl">
             <p>&copy; 2024 UP DeFi LLC - Vidiac. All rights reserved.</p>
               <div className="flex justify-center gap-4 mt-4 p-2 bg-white w-fit rounded-lg">
-                <button aria-label='UP DeFi' onClick={() => window.open('/', '_blank')}>
+                <button aria-label='UP DeFi' onClick={() => window.open('https://www.up-defi.com', '_blank')}>
                   <Image src="../images/UPDeFiLogo2WhiteBG.png" alt="UP DeFi" width={36} height={36}/>
                 </button>
                 <button aria-label='Telegram' onClick={() => window.open('https://t.me/vidiac_token', '_blank')}>

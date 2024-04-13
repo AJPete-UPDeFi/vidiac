@@ -42,7 +42,7 @@ export default function NavbarMain() {
     { text: 'Calculator', href: '#dividendcalculator' },
     { text: 'Tokenomics', href: '#tokenomics' },
     { text: 'FAQ', href: '#faq' },
-    { text: 'UP DeFi', href: '/' },
+    { text: 'UP DeFi', href: 'https://www.up-defi.com' },
     { text: 'Telegram', href: 'https://t.me/vidiac_token' },
     { text: 'X', href: 'https://twitter.com/UPDefiCrypto' },
     { text: 'Discord', href: 'https://discord.gg/U2B8vhTN2P' },
