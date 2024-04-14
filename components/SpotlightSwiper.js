@@ -69,11 +69,14 @@ export default function App() {
           <p className="text-gray-600 mt-auto mb-5 text-center text-2xl">
             {creator.description}
           </p>
-          <p className="text-2xl text-gray-800 mb-4 font-semibold py-1">
+          // Commented out the rewards section
+          { 
+          /* <p className="text-2xl text-gray-800 mb-4 font-semibold py-1">
             Rewards ${isNaN(Number(dividendAmount)) || dividendAmount === '' || dividendAmount === null || dividendAmount === undefined
             ? '0.00'
             : new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(Number(dividendAmount))}
-          </p>
+          </p> */
+          }
         </div>
       </SwiperSlide>
     );
