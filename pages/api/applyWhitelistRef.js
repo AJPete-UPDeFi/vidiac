@@ -1,7 +1,6 @@
 // applyWhitelistRef.js
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
-import fetch from 'node-fetch';
 import axios from 'axios';
 
 export default async function handler(req, res) {
@@ -18,24 +17,14 @@ export default async function handler(req, res) {
     }).catch(error => {
         console.error('Error sending message to Telegram:', error);
     });
-}
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).send('Method Not Allowed');
   }
 
   try {
-    const { walletAddress, recaptchaToken } = req.body;
-    // Verify the reCAPTCHA response
-    const recaptchaSecretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY; 
-    const recaptchaResponse = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${recaptchaToken}`, {
-        method: 'POST',
-    });
-    const recaptchaData = await recaptchaResponse.json();
-
-    if (!recaptchaData.success) {
-        return res.status(400).send('reCAPTCHA verification failed');
-    }
+    const { walletAddress } = req.body; // Removed recaptchaToken from the destructuring
 
     console.log("Received walletAddress:", walletAddress);
     const useServiceAccountAuth = new JWT({
@@ -69,7 +58,7 @@ export default async function handler(req, res) {
     }
 
   } catch (error) {
-    console.error('Error adding walletAddress:', error);
+    console.error('Error handling the request:', error);
     res.status(500).json('Internal Server Error');
     console.error("Error adding walletAddress to Google Sheets:", error);
   }

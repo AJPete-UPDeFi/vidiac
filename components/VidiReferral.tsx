@@ -5,7 +5,7 @@ import contractsConfig from '../utils/contractsConfig';
 import { Card, CardBody, CardHeader, Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { formatEther } from 'viem';
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 
 const VidiReferral = () => {
     const [code, setCode] = useState('');
@@ -57,41 +57,38 @@ const VidiReferral = () => {
       });
     };
 
-    const handleRecaptcha = (token: any) => {
-      setRecaptchaToken(token || '');
-    };
-
-  const handleWhitelistApplication = async () => {
-    if (!recaptchaToken) {
-        setError('Please complete the reCAPTCHA.');
-        return;
-    }
-
-    // Call to the serverless function
-    const response = await fetch('/api/applyWhitelistRef', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ walletAddress: userAddress, recaptchaToken }),
-    });
-
-    // Handle response
-    const responseData = await response.json();
-    if (response.ok) {
-        if (responseData.addressExists) {
-            // Show message that the address already exists
-            setError('Your address is awaiting approval from the Vidiac team.');
-        } else {
-            // Show success message and open modal
-            setError('');
-            console.log('Your address has been added to the whitelist and is awaiting approval.');
-            onOpen();
-        }
-    } else {
-        setError('Failed to submit application');
-    }
-};
+    //const handleRecaptcha = (token: any) => {
+    //  setRecaptchaToken(token || '');
+    //};
   
-    const shareMessage = encodeURIComponent("Join the Vidiac revolution! 🎥 This is more than just a token; it's a movement to empower video creators and share in their success. www.up-defi.com/vidiac 🚀 #UPDeFi #Vidiac #VIDI");
+    const handleWhitelistApplication = async () => {
+      // Remove checks for recaptchaToken
+  
+      // Call to the serverless function with just the walletAddress
+      const response = await fetch('/api/applyWhitelistRef', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ walletAddress: userAddress }),
+      });
+  
+      // Handle response
+      const responseData = await response.json();
+      if (response.ok) {
+          if (responseData.addressExists) {
+              // Show message that the address already exists
+              setError('Your address is awaiting approval from the Vidiac team.');
+          } else {
+              // Show success message and open modal
+              setError('');
+              console.log('Your address has been added to the whitelist and is awaiting approval.');
+              onOpen();
+          }
+      } else {
+          setError('Failed to submit application');
+      }
+  };
+  
+    const shareMessage = encodeURIComponent("Join the Vidiac revolution! 🎥 This is more than just a token; it's a movement to empower video creators and share in their success. www.vidiac.co 🚀 #UPDeFi #Vidiac #VIDI");
     const twitterShareUrl = `https://twitter.com/intent/tweet?text=${shareMessage}`;
 
     useEffect(() => {
@@ -155,12 +152,14 @@ const VidiReferral = () => {
                     <p className="text-md font-semibold">Your address is not yet eligible for a referral. For the security of the contract, an address must be whitelisted prior to applying a referral code.</p>
                     {error && <p className="text-red-600 text-2xl text-semibold">Error: {error}</p>}
                     {writeError && <p className="text-red-600 text-2xl text-semibold">Error: {writeError.message}</p>} 
-                    <>  
-                <ReCAPTCHA
+                    <>
+                    {  
+                /* <ReCAPTCHA
                     sitekey="6Lfv2EspAAAAAGmcwxiKTRLYzV7Bd1QMIRYG2XwZ"
                     onChange={handleRecaptcha}
                     className='mt-3'
-                />
+                /> */
+                    }
             <Button onClick={handleWhitelistApplication} className="text-2xl font-bold mt-4 max-w-xs" color="primary">
               Apply for Whitelist
             </Button>
