@@ -17,15 +17,14 @@ export default async function handler(req, res) {
     }).catch(error => {
         console.error('Error sending message to Telegram:', error);
     });
-  }
+}
 
   if (req.method !== 'POST') {
     return res.status(405).send('Method Not Allowed');
   }
 
   try {
-    const { walletAddress } = req.body; // Removed recaptchaToken from the destructuring
-
+    const { walletAddress } = req.body;
     console.log("Received walletAddress:", walletAddress);
     const useServiceAccountAuth = new JWT({
       email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
@@ -48,7 +47,7 @@ export default async function handler(req, res) {
 
     if (isAddressAlreadyListed) {
       console.log("Address already exists in Google Sheets");
-      res.status(200).json({ message: 'Address already exists', addressExists: true, isAwaitingApproval: isAddressAlreadyListed });
+      res.status(200).json({ message: 'Address already exists', addressExists: true });
     } else {
       console.log("Adding walletAddress to Google Sheets:", walletAddress);
       await sheet.addRow({ WalletAddress: walletAddress });
@@ -58,7 +57,7 @@ export default async function handler(req, res) {
     }
 
   } catch (error) {
-    console.error('Error handling the request:', error);
+    console.error('Error adding walletAddress:', error);
     res.status(500).json('Internal Server Error');
     console.error("Error adding walletAddress to Google Sheets:", error);
   }
