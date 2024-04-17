@@ -5,18 +5,18 @@ import contractsConfig from '../utils/contractsConfig';
 import { Card, CardBody, CardHeader, Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { formatEther } from 'viem';
-//import ReCAPTCHA from "react-google-recaptcha";
 
 const VidiReferral = () => {
     const [code, setCode] = useState('');
     const [isEligible, setIsEligible] = useState(false);
+    const [isAwaitingApproval, setIsAwaitingApproval] = useState(false);
     const [referralActive, setReferralActive] = useState(false);
     const [refCodeApplied, setRefCodeApplied] = useState(false);
     const [rewardAmount, setRewardAmount] = useState(0);
     const [error, setError] = useState('');
     const { address: userAddress } = useAccount();
-    const [recaptchaToken, setRecaptchaToken] = useState('');
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen: isApplyCodeModalOpen, onOpen: onApplyCodeModalOpen, onClose: onApplyCodeModalClose } = useDisclosure();
 
     // Fetch referralActive status
     const { data: referralActiveData } = useContractRead({
@@ -52,17 +52,44 @@ const VidiReferral = () => {
     });
 
     const applyCode = (referralCode: string) => {
-      write({
-        args: [referralCode],
+      const { write, data, error } = useContractWrite({
+          address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
+          abi: contractsConfig.BSC.VidiacBSCContract.abi,
+          functionName: 'applyReferralCode',
+          args: [referralCode]
       });
-    };
+  
+      useEffect(() => {
+          if (data) {
+              console.log('Referral code successfully applied');
+              onApplyCodeModalOpen();  // Open the modal upon successful contract write
+          }
+          if (error) {
+              console.error('Error applying referral code:', error.message);
+              setError(error.message);
+          }
+      }, [data, error]);  // React to changes in data or error
+  };
 
-    //const handleRecaptcha = (token: any) => {
-    //  setRecaptchaToken(token || '');
-    //};
+    const checkWhitelistStatus = async () => {
+      if (!userAddress) return;
+      try {
+          const response = await fetch(`/api/checkWhitelistStatus?walletAddress=${encodeURIComponent(userAddress)}`, {
+              method: 'GET'
+          });
+          const data = await response.json();
+          if (response.ok) {
+              setIsAwaitingApproval(data.isAwaitingApproval);
+          } else {
+              setError("Failed to retrieve whitelist status.");
+          }
+      } catch (error) {
+          console.error("Error checking whitelist status:", error);
+          setError("An error occurred while checking whitelist status.");
+      }
+  };
   
     const handleWhitelistApplication = async () => {
-      // Remove checks for recaptchaToken
   
       // Call to the serverless function with just the walletAddress
       const response = await fetch('/api/applyWhitelistRef', {
@@ -88,8 +115,11 @@ const VidiReferral = () => {
       }
   };
   
-    const shareMessage = encodeURIComponent("Join the Vidiac revolution! 🎥 This is more than just a token; it's a movement to empower video creators and share in their success. www.vidiac.co 🚀 #UPDeFi #Vidiac #VIDI");
-    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${shareMessage}`;
+    const shareMessageApply = encodeURIComponent("Thank you for the free VIDI @Vidiac_Token 💵 Get yours by checking out www.vidiac.co 🚀 #UPDeFi #Vidiac #VIDI");
+    const twitterShareUrlApply = `https://twitter.com/intent/tweet?text=${shareMessageApply}`;
+
+    const shareMessageWhitelist = encodeURIComponent("@Vidiac_Token I just applied for the referral whitelist and I am excited to join the #Vidiac family! www.vidiac.co #VIDI");
+    const twitterShareUrlWhitelist = `https://twitter.com/intent/tweet?text=${shareMessageWhitelist}`;
 
     useEffect(() => {
         if (referralActiveData !== null) {
@@ -105,8 +135,10 @@ const VidiReferral = () => {
           const rewardAmountBigInt = BigInt(rewardAmountData.toString());
           const formattedRewardAmount = parseFloat(formatEther(rewardAmountBigInt));
           setRewardAmount(formattedRewardAmount); // Update state directly here
-       }
-    }, [referralActiveData, isWhitelistedData, refCodeAppliedData, rewardAmountData]);
+        }
+        
+        checkWhitelistStatus();
+    }, [referralActiveData, isWhitelistedData, refCodeAppliedData, rewardAmountData, userAddress]);
 
     return (
         <Card className="max-w-xl shadow-lg m-4 mb-10 bg-black/60">
@@ -123,7 +155,7 @@ const VidiReferral = () => {
                     <ConnectButton />
                     </div>
                   </div>
-                ) :referralActive && isEligible && !refCodeApplied? (
+                  ) : referralActive && isEligible && !refCodeApplied ? (
                     <>
                         <div className="flex flex-col items-center justify-center">
                         <input 
@@ -141,26 +173,78 @@ const VidiReferral = () => {
                         >
                           Apply Code
                         </Button>
-                        </div>
+                        <Modal 
+                          backdrop="opaque" 
+                          isOpen={isApplyCodeModalOpen} 
+                          onOpenChange={onOpenChange}
+                          onClose={onApplyCodeModalClose}
+                          radius="lg"
+                          classNames={{
+                            body: "py-6",
+                            backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+                            base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]",
+                            header: "border-b-[1px] border-[#292f46]",
+                            footer: "border-t-[1px] border-[#292f46]",
+                            closeButton: "hover:bg-white/5 active:bg-white/10",
+                          }}
+                        >
+                          <ModalContent>
+                            {(onClose) => (
+                          <>
+                          <ModalHeader className="flex flex-col gap-1 text-xl text-gray-200 font-bold">The referral code has been applied!</ModalHeader>
+                          <ModalBody>
+                            <div className='text-lg text-gray-200 font-semibold'>
+                              <p> 
+                              Enjoy your VIDI tokens. We're excited to have you on board.
+                              </p>
+                          <Divider className='my-2'/>
+                            <p>
+                            Let the world know you're part of the Vidiac revolution! Share on Twitter:
+                            </p>
+                            </div>
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button color="primary" variant="light" onPress={onApplyCodeModalClose}>
+                            Close
+                            </Button>
+                              <a 
+                              href={twitterShareUrlApply} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="bg-blue-500 hover:bg-blue-700 shadow-lg shadow-indigo-500/20 py-2 px-4 rounded text-white font-semibold"
+                            >
+                              Share on X
+                              </a>
+                          </ModalFooter>
+                        </>
+                          )}
+                          </ModalContent>
+                        </Modal>
+                          </div>
                     </>
                 ) : refCodeApplied ? (
                     <div>
                     <p className="text-xl font-semibold">Congratulations, looks like you have already applied a referral code. Thank you for supporting Vidiac creators.</p>
                     </div>
-                ) : !isEligible ? (
+              ) : isAwaitingApproval ? (
+                <p className="text-xl font-semibold">
+                Please be patient as your address is awaiting approval. Join the conversation here
+                <a href="https://t.me/vidiac_token" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-500">
+                <i className="fab fa-telegram-plane p-1"></i>
+                </a>
+                and let us know we need to hurry up.
+                </p>
+            ) : !isEligible ? (
                     <div>
                     <p className="text-md font-semibold">Your address is not yet eligible for a referral. For the security of the contract, an address must be whitelisted prior to applying a referral code.</p>
                     {error && <p className="text-red-600 text-2xl text-semibold">Error: {error}</p>}
                     {writeError && <p className="text-red-600 text-2xl text-semibold">Error: {writeError.message}</p>} 
-                    <>
-                    {  
-                /* <ReCAPTCHA
-                    sitekey="6Lfv2EspAAAAAGmcwxiKTRLYzV7Bd1QMIRYG2XwZ"
-                    onChange={handleRecaptcha}
-                    className='mt-3'
-                /> */
-                    }
-            <Button onClick={handleWhitelistApplication} className="text-2xl font-bold mt-4 max-w-xs" color="primary">
+                    <>      
+            <Button 
+              onClick={handleWhitelistApplication} 
+              className="text-2xl font-bold mt-4 max-w-xs" 
+              color="primary"
+            >
               Apply for Whitelist
             </Button>
             <Modal 
@@ -188,7 +272,7 @@ const VidiReferral = () => {
                     </p>
                     <Divider className='my-2'/>
                     <p>
-                    Spread the word and share your enthusiasm for UP DeFi and Vidiac with your friends and followers on X! Let's make some noise!
+                    Let the world know you're part of the Vidiac revolution! Share on Twitter:
                     </p>
                     </div>
                   </ModalBody>
@@ -197,7 +281,7 @@ const VidiReferral = () => {
                     Close
                     </Button>
                     <a 
-                      href={twitterShareUrl} 
+                      href={twitterShareUrlWhitelist} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="bg-blue-500 hover:bg-blue-700 shadow-lg shadow-indigo-500/20 py-2 px-4 rounded text-white font-semibold"

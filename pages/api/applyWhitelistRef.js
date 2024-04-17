@@ -48,7 +48,7 @@ export default async function handler(req, res) {
 
     if (isAddressAlreadyListed) {
       console.log("Address already exists in Google Sheets");
-      res.status(200).json({ message: 'Address already exists', addressExists: true });
+      res.status(200).json({ message: 'Address already exists', addressExists: true, isAwaitingApproval: isAddressAlreadyListed });
     } else {
       console.log("Adding walletAddress to Google Sheets:", walletAddress);
       await sheet.addRow({ WalletAddress: walletAddress });
