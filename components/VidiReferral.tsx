@@ -39,37 +39,30 @@ const VidiReferral = () => {
         args: [userAddress],
     });
 
-    const { write, error: writeError } = useContractWrite({
-        address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
-        abi: contractsConfig.BSC.VidiacBSCContract.abi,
-        functionName: 'applyReferralCode',
-    });
-
     const { data: rewardAmountData} = useContractRead({
         address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
         abi: contractsConfig.BSC.VidiacBSCContract.abi,
         functionName: 'referralAmount',
     });
 
-    const applyCode = (referralCode: string) => {
-      const { write, data, error } = useContractWrite({
-          address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
-          abi: contractsConfig.BSC.VidiacBSCContract.abi,
-          functionName: 'applyReferralCode',
-          args: [referralCode]
-      });
-  
-      useEffect(() => {
-          if (data) {
-              console.log('Referral code successfully applied');
-              onApplyCodeModalOpen();  // Open the modal upon successful contract write
-          }
-          if (error) {
-              console.error('Error applying referral code:', error.message);
-              setError(error.message);
-          }
-      }, [data, error]);  // React to changes in data or error
-  };
+    const {
+      write,
+      data: contractWriteData,
+      error: contractWriteError
+      } = useContractWrite({
+      address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
+      abi: contractsConfig.BSC.VidiacBSCContract.abi,
+      functionName: 'applyReferralCode',
+      args: [code]
+    });
+
+    const applyCode = (code: string) => {
+      if (!code) {
+          console.error("Referral code is empty.");
+          return;
+      }
+      write();
+    };
 
     const checkWhitelistStatus = async () => {
       if (!userAddress) return;
@@ -122,6 +115,14 @@ const VidiReferral = () => {
     const twitterShareUrlWhitelist = `https://twitter.com/intent/tweet?text=${shareMessageWhitelist}`;
 
     useEffect(() => {
+        if (contractWriteData) {
+          console.log('Referral code successfully applied');
+          onApplyCodeModalOpen(); // Open the modal upon successful contract write
+        }
+        if (contractWriteError) {
+          console.error('Error applying referral code:', contractWriteError.message);
+          // Assume setError is a state setter function for displaying errors
+        }
         if (referralActiveData !== null) {
             setReferralActive(!!referralActiveData);
         }
@@ -138,7 +139,7 @@ const VidiReferral = () => {
         }
         
         checkWhitelistStatus();
-    }, [referralActiveData, isWhitelistedData, refCodeAppliedData, rewardAmountData, userAddress]);
+    }, [referralActiveData, isWhitelistedData, refCodeAppliedData, rewardAmountData, userAddress, contractWriteData, contractWriteError]);
 
     return (
         <Card className="max-w-xl shadow-lg m-4 mb-10 bg-black/60">
@@ -238,7 +239,7 @@ const VidiReferral = () => {
                     <div>
                     <p className="text-md font-semibold">Your address is not yet eligible for a referral. For the security of the contract, an address must be whitelisted prior to applying a referral code.</p>
                     {error && <p className="text-red-600 text-2xl text-semibold">Error: {error}</p>}
-                    {writeError && <p className="text-red-600 text-2xl text-semibold">Error: {writeError.message}</p>} 
+                    {contractWriteError && <p className="text-red-600 text-2xl text-semibold">Error: {contractWriteError.message}</p>} 
                     <>      
             <Button 
               onClick={handleWhitelistApplication} 
