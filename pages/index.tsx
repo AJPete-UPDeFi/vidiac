@@ -91,9 +91,9 @@ const Vidiac = () => {
 
         <section
           data-aos="fade-up"
-          className="mx-1 mb-20 mt-10 grid grid-cols-1 justify-items-center gap-10 p-4 xl:grid-cols-2 "
+          className="mx-1 mb-20 mt-10 grid grid-cols-1 justify-items-center p-4 xl:grid-cols-2 "
         >
-          <div className="rounded-2xl border-4">
+          <div className="rounded-2xl border-4 mb-10">
             <DividendCalculator />
           </div>
           <div className="hidden grid-cols-1 flex-col rounded-2xl border-4 sm:flex">
