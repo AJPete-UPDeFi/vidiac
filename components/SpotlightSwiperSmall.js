@@ -26,7 +26,7 @@ export default function SpotlightSwiperSmall() {
     } else if (url.includes('twitch.tv')) {
       // Twitch URL
       const channel = url.split('/').pop();
-      return `https://player.twitch.tv/?channel=${channel}&parent=vidiac.co`; // Replace 'example.com' with your domain
+      return `https://player.twitch.tv/?channel=${channel}&parent=vidiac.co/creators`; // Replace 'example.com' with your domain
     } else {
       // Default to YouTube if format is not supported or recognized
       return `https://www.youtube.com/embed/`;
