@@ -149,7 +149,7 @@ const VidiReferral = () => {
                 <p className='text-lg font-semibold sm:text-2xl'>Current Reward Amount: {rewardAmount} VIDI</p>
                 </p>
             </CardHeader>
-            <CardBody className="bg-gradient-to-t from-blue-50 to-blue-300 rounded-2xl">
+            <CardBody className="bg-gradient-to-t from-brandLavender to-blue-300 rounded-2xl">
                 {!userAddress ? (
                   <div className='flex flex-grid justify-between justify-text-center'>
                     <div className='min-w-full'>

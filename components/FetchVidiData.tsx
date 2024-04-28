@@ -4,7 +4,7 @@ import { useAccount, useContractRead } from 'wagmi';
 import { formatEther } from 'viem';
 import contractsConfig from '../utils/contractsConfig';
 
-const { VidiacETHContract, VidiacETHDistributor } = contractsConfig.ETH;
+//const { VidiacETHContract, VidiacETHDistributor } = contractsConfig.ETH;
 const { VidiacBSCContract, VidiacBSCDistributor } = contractsConfig.BSC;
 
 const formatToken = (value: any, decimals = 18) => {
@@ -15,11 +15,11 @@ export const FetchVidiacData = () => {
   const { address } = useAccount();
   const [totalDividends, setTotalDividends] = useState(0); // Dedicated state for total dividends
   const [data, setData] = useState({
-    eth: {
+    /*eth: {
       userDividends: 0,
       userTokenBalance: 0,
       userUnpaidEarnings: 0,
-    },
+    },*/
     bsc: {
       userDividends: 0,
       userTokenBalance: 0,
@@ -32,18 +32,18 @@ export const FetchVidiacData = () => {
     }
   });
 
-  const vidiacETHDistributorAddress = VidiacETHDistributor.address as `0x${string}`;
-  const vidiacETHContractAddress = VidiacETHContract.address as `0x${string}`;
+  //const vidiacETHDistributorAddress = VidiacETHDistributor.address as `0x${string}`;
+  //const vidiacETHContractAddress = VidiacETHContract.address as `0x${string}`;
   const vidiacBSCDistributorAddress = VidiacBSCDistributor.address as `0x${string}`;
   const vidiacBSCContractAddress = VidiacBSCContract.address as `0x${string}`;
 
-  const totalDividendsDataETH = useContractRead({
+  /*const totalDividendsDataETH = useContractRead({
     address: vidiacETHDistributorAddress,
     abi: VidiacETHDistributor.abi,
     functionName: 'totalDividends',
     watch: true,
     chainId: 1, 
-  });
+  });*/
 
   // Example usage of useContractRead for fetching total dividends from BSC
   const totalDividendsDataBSC = useContractRead({
@@ -57,7 +57,7 @@ export const FetchVidiacData = () => {
   // Use wagmi hooks to read contract data
   // VidiacETH
 
-  const { data: userDividendsDataETH } = useContractRead({
+  /*const { data: userDividendsDataETH } = useContractRead({
     address: vidiacETHDistributorAddress,
     abi: VidiacETHDistributor.abi,
     functionName: 'getTotalDividendsForAddress',
@@ -80,7 +80,7 @@ export const FetchVidiacData = () => {
     functionName: 'balanceOf',
     args: [address],
     watch: !!address,
-  });
+  });*/
 
   // VidiacBSC
 
@@ -97,26 +97,27 @@ export const FetchVidiacData = () => {
     address: vidiacBSCDistributorAddress,
     abi: VidiacBSCDistributor.abi,
     functionName: 'getUnpaidEarnings',
+    args: [address],
     watch: !!address,
     chainId: 56,
   });
 
   const { data: userBSCTokenBalanceData } = useContractRead({
     address: vidiacBSCContractAddress,
-    abi: VidiacETHContract.abi,
+    abi: VidiacBSCContract.abi,
     functionName: 'balanceOf',
     args: [address],
     watch: !!address,
 });
 
   useEffect(() => {
-    let totalDividendsETH = 0;
+    //let totalDividendsETH = 0;
     let totalDividendsBSC = 0;
 
     // Check if data from the ETH contract is available and use it
-    if (totalDividendsDataETH.data) {
+    /*if (totalDividendsDataETH.data) {
       totalDividendsETH = formatToken(totalDividendsDataETH.data.toString());
-    }
+    }*/
 
     // Check if data from the BSC contract is available and use it
     if (totalDividendsDataBSC.data) {
@@ -124,20 +125,20 @@ export const FetchVidiacData = () => {
     }
 
     // Update the total dividends state regardless of which contracts returned data
-    setTotalDividends(totalDividendsETH + totalDividendsBSC);
+    setTotalDividends(/*totalDividendsETH + */totalDividendsBSC);
 
     if (!address) return;
 
-    let userDivsETH = 0;
+    //let userDivsETH = 0;
     let userDivsBSC = 0;
-    let userETHBalance = 0;
+    //let userETHBalance = 0;
     let userBSCBalance = 0;
-    let userUnpaidEarningsETH = 0;
+    //let userUnpaidEarningsETH = 0;
     let userUnpaidEarningsBSC = 0;
 
     // Process contract reads for VidiacETH
   
-    if (userDividendsDataETH) {
+    /*if (userDividendsDataETH) {
         const balanceBigInt = BigInt(userDividendsDataETH.toString());
         userDivsETH = formatToken(balanceBigInt); 
       }
@@ -148,7 +149,7 @@ export const FetchVidiacData = () => {
     if (userETHTokenBalanceData) {
         const balanceBigInt = BigInt(userETHTokenBalanceData.toString());
         userETHBalance = parseFloat(formatEther(balanceBigInt));
-      }  
+      }*/  
 
     // Process contract reads for VidiacBSC
     
@@ -166,23 +167,23 @@ export const FetchVidiacData = () => {
       }
 
     setData({
-        eth: {
+        /*eth: {
           userDividends: userDivsETH,
           userTokenBalance: userETHBalance,
           userUnpaidEarnings: userUnpaidEarningsETH,
-        },
+        },*/
         bsc: {
           userDividends: userDivsBSC,
           userTokenBalance: userBSCBalance,
           userUnpaidEarnings: userUnpaidEarningsBSC,
         },
         total: {
-          userDividends: userDivsETH + userDivsBSC,
-          userTokenBalance: userETHBalance + userBSCBalance,
-          userUnpaidEarnings: userUnpaidEarningsETH + userUnpaidEarningsBSC,
+          userDividends: /*userDivsETH + */userDivsBSC,
+          userTokenBalance: /*userETHBalance + */userBSCBalance,
+          userUnpaidEarnings: /*userUnpaidEarningsETH + */userUnpaidEarningsBSC,
         }
       });
-  }, [totalDividendsDataETH.data, totalDividendsDataBSC.data, address, userDividendsDataETH, userETHTokenBalanceData, userBSCTokenBalanceData]);
+  }, [totalDividendsDataBSC.data, address, userDividendsDataBSC, userBSCTokenBalanceData]);
 
   return { totalDividends, data };
 };

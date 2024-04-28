@@ -9,7 +9,7 @@ type NavbarButtonProps = {
 const NavbarButton: React.FC<NavbarButtonProps> = ({ onClick }) => {
   return (
     <button onClick={onClick} aria-label="Open menu" className="flex-none items-center justify-center p-2">
-      <Image src="/images/menu.svg" alt="Menu" width={36} height={36} />
+      <Image src="/images/menu.svg" alt="Menu" width={36} height={36} className='rounded-lg'/>
     </button>
   );
 };

@@ -77,8 +77,22 @@
     background-position: center;
   }
 
+  .bg-gradient7 {
+    background-image: url('/images/purple-grad-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
   .custom-navbar, .custom-navbar header {
     max-width: none !important; /* Remove the max-width restriction */
+  }
+
+  .set-center {
+    justify-content: center !important;
+    align-items: center !important; /* Force centering */
+    justify-self: center !important;
   }
 
   .mySwiper {
@@ -136,7 +150,7 @@
 
   /* Spotlight Swiper Styles */
   .spotlight-swiper-container {
-    width: 360px;
+    width: 1000px;
     height: 480px;
     min-width: 240px;
     min-height: 320px;
@@ -149,6 +163,22 @@
     }
   }
 
+  .spotlight-swiper-container-sm {
+    width: 300px;
+    height: 540px;
+    max-width: 500px;
+    max-height: 540px;
+  }
+
+  @media (max-width: 640px) {
+    .spotlight-swiper-container-sm {
+      width: 300px;
+      height: 540px;
+      max-width: 500px;
+      max-height: 540px;
+    }
+  }
+
   .spotlight-swiper-container .swiper-slide {
     align-items: center;
     justify-content: center;
@@ -157,5 +187,38 @@
     font-weight: bold;
     color: #fff;
   }
+
+  /* Shake Animation */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+  0%, 25% { /* From 0% to 20% of the time, rotate from 0 to 360 degrees */
+    transform: rotate(0deg) !important;
+  }
+  50% { /* From 20% to 100% of the time, stay at 360 degrees */
+    transform: rotate(-30deg) !important; 
+  }
+  75% { /* From 20% to 100% of the time, stay at 360 degrees */
+    transform: rotate(0deg) !important; 
+  }
+  100% { /* From 20% to 100% of the time, stay at 360 degrees */
+    transform: rotate(360deg) !important; 
+  }
+}
+
+.animate-rotate {
+  animation: rotate 5s linear infinite !important; /* Total cycle time is 5 seconds, includes the pause */
+}
 
 }

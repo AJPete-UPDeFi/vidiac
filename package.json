@@ -12,6 +12,7 @@
     "@nextui-org/react": "^2.2.9",
     "@rainbow-me/rainbowkit": "^1.1.2",
     "@vercel/speed-insights": "^1.0.2",
+    "aos": "^2.3.4",
     "axios": "^1.6.7",
     "chart.js": "^4.4.1",
     "framer-motion": "^10.16.16",
@@ -30,6 +31,7 @@
     "web3": "^4.3.0"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
     "@types/node": "^18.16.12",
     "@types/react": "^18.2.21",
     "@types/react-google-recaptcha": "^2.1.8",

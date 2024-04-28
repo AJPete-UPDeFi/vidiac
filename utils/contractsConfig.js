@@ -2043,7 +2043,7 @@ export const contractsConfig = {
                 }
             ]
         },
-    },
+    }, 
     BSC: {
         VidiacBSCContract: {
             address: "0x237FA37Be83955C62d852B16516e6F4407bf3945",

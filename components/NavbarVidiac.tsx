@@ -35,45 +35,32 @@ export default function NavbarMain() {
   };
 
   const menuItems: MenuItem[] = [
-    { text: 'Dashboard', href: '#dashboard' },
-    { text: 'Referral', href: '#referral' },
-    { text: 'Creator Spotlight', href: '#spotlight' },
-    { text: 'About', href: '#howitworks' },
-    { text: 'Calculator', href: '#dividendcalculator' },
-    { text: 'Tokenomics', href: '#tokenomics' },
-    { text: 'FAQ', href: '#faq' },
-    { text: 'UP DeFi', href: 'https://www.up-defi.com' },
+    { text: 'Home', href: '/' },
+    { text: 'Dashboard', href: '/dashboard' },
+    { text: 'Creator Spotlight', href: '/creators' },
+    { text: 'Merch Store', href: 'https://www.vidiac.shop' },
     { text: 'Telegram', href: 'https://t.me/vidiac_token' },
     { text: 'X', href: 'https://twitter.com/UPDefiCrypto' },
     { text: 'Discord', href: 'https://discord.gg/U2B8vhTN2P' },
-    { text: 'Instagram', href: 'https://www.instagram.com/updeficrypto/' },
   ];
 
   return (
-    <Navbar shouldHideOnScroll isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className='custom-navbar'>
+    <Navbar shouldHideOnScroll isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className='custom-navbar bg-transparent flex-row'>
         <NavbarContent className="w-16 h-16 pr-3" justify="start">
         <button aria-label="Open menu">
           <NavbarButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </button>
         </NavbarContent>
-  
-        <NavbarContent className="pr-3" justify="center">
-          <NavbarBrand>
-            <button aria-label="Vidiac" onClick={() => router.push('/vidiac')}>
-            <Image src="/images/playbutton1.png" alt="Vidiac Logo" width={64} height={64} />
-            </button>
-            <p className="ml-2 font-extrabold text-3xl hidden md:flex">Vidiac</p>
-          </NavbarBrand>
-        </NavbarContent>
-  
-        <NavbarContent justify="end" className='hidden xs:flex'>
+
+        <NavbarContent justify="end">
           <NavbarItem>
-            <ConnectButton />
+            <button aria-label="Vidiac" onClick={() => router.push('/')}>
+            <Image src="/images/playbutton1.png" alt="Vidiac Logo" width={40} height={40} />
+            </button>
           </NavbarItem>
-        </NavbarContent>
-      
+        </NavbarContent>    
   
-      <NavbarMenu className="bg-white border border-gray-200 font-semibold rounded-lg shadow-md max-w-xs w-auto max-h-[450px] top-16 left-8 p-2">
+      <NavbarMenu className="border-2 font-semibold rounded-lg shadow-md max-w-xs w-[200px] max-h-[270px] top-16 left-8 p-2">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.text}-${index}`}>
             <Link

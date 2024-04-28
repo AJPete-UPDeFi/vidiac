@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { use, useState, useEffect } from 'react';
 import { Divider } from '@nextui-org/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const DividendCalculator = () => {
     const [tokensOwned, setTokensOwned] = useState('2500');
@@ -44,11 +46,17 @@ const DividendCalculator = () => {
     const handleDailyVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDailyVolume(e.target.value);
     };
-    
-    
+
+    useEffect(() => {
+        AOS.init();
+        duration: 2000;
+        once: true;
+    }, []); 
 
     return (
-        <div className="p-4">
+        <div data-aos="fade-up" className="p-4">
+            <p className='text-center text-5xl font-extrabold text-gray-900 mb-4'>Dividend Calculator</p>
+          <p className='text-center text-2xl font-bold text-gray-900 mb-4'>Try different values to see your potential earnings!</p>
             <div className="mb-4">
                 <label htmlFor="tokensOwned" className="block text-xl font-semibold text-gray-700">
                     Total Tokens Owned
@@ -99,8 +107,8 @@ const DividendCalculator = () => {
             <div className='flex flex-row text-lg sm:text-2xl'>Annual USD Dividends: <p className='text-green-700 font-bold ml-auto'>${annualDividends.toFixed(2)}</p></div>
             <Divider className='mt-4'/>
             <p className="text-2xl font-bold text-gray-900 mb-4 mt-4"> Featured Wallet Dividends</p>
-            <div className='flex flex-row text-lg sm:text-2xl'>Featured Wallet Daily Dividends: <p className='text-green-700 font-bold ml-auto'>${featuredWalletDaily.toFixed(2)}</p></div>
-            <div className='flex flex-row text-lg sm:text-2xl'>Featured Wallet Weekly Dividends: <p className='text-green-700 font-bold ml-auto'>${featuredWalletWeekly.toFixed(2)}</p></div>
+            <div className='flex flex-row text-lg sm:text-2xl'>Daily USD Dividends: <p className='text-green-700 font-bold ml-auto'>${featuredWalletDaily.toFixed(2)}</p></div>
+            <div className='flex flex-row text-lg sm:text-2xl'>Weekly USD Dividends: <p className='text-green-700 font-bold ml-auto'>${featuredWalletWeekly.toFixed(2)}</p></div>
             </div>
         </div>
     );

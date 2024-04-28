@@ -1,53 +1,95 @@
 // MainDashboard component
 import React, { useEffect, useState } from 'react';
 import { FetchVidiacData } from '../FetchVidiData';
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
-// import TotalDivBarChart from '../TotalDivBarChart'; 
 import ClaimDividends from '../ClaimDividends';
 import BSCAddressCopy from '../VidiBSCAddressCopy';
+import VidiReferral from '../VidiReferral';
+import { Divider } from '@nextui-org/react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const VidiDashboard = () => {
+  useEffect(() => {
+    AOS.init();
+    duration: 2000;
+    once: true;
+  }, []);
   const vidiacData = FetchVidiacData(); // Use the custom hook to fetch data
 
-  const formatCurrency = (value:any) => {
+  const formatCurrency = (value: any) => {
     if (!value || value === 'Loading...') return value;
-    return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(Number(value));
-};
-  
-  const formatTokenCount = (value:any) => {
-      if (!value || value === 'Loading...') return value;
-      return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(Number(value));
+    return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(
+      Number(value)
+    );
   };
 
-  /*const [chartData, setChartData] = useState({
-    labels: ['Vidiac (ETH)', 'Vidiac (BSC)'],
-      datasets: [
-        {
-          label: 'Dividends Distributed',
-          data: [0, 0], // Initialize with zero values
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-      ],
-    }); 
+  const formatTokenCount = (value: any) => {
+    if (!value || value === 'Loading...') return value;
+    return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+      Number(value)
+    );
+  };
 
-    useEffect(() => {
-        // When vidiacData is updated, update the chart data
-        if (vidiacData.total.totalDividends !== undefined) {
-            setChartData(prevChartData => ({
-                ...prevChartData,
-                datasets: [
-                    {
-                        ...prevChartData.datasets[0],
-                        data: [vidiacData.eth.totalDividends, vidiacData.bsc.totalDividends],
-                    },
-                ],
-            }));
-        }
-    }, [vidiacData]); // Dependency array ensures this effect runs when vidiacData changes
-    */
+  return (
+    <div className="flex justify-center">
+      <div className="mt-10 flex flex-col">
+        <p
+          data-aos="fade-up"
+          className="mb-10 text-center text-4xl font-bold text-white"
+        >
+          Your Vidiac Dashboard{' '}
+        </p>
+        <div className="grid grid-cols-1 justify-items-center xl:grid-cols-2">
+          <div className="mb-2 grid grid-cols-1 sm:grid-cols-3">
+            <div
+              data-aos="fade-right"
+              className="m-2 h-[80px] w-[180px] rounded-lg bg-brandDeepBlue p-2"
+            >
+              <p className="text-xl font-bold text-white">VIDI Balance</p>
+              <p className="text-xl font-bold text-white ">
+                {formatTokenCount(vidiacData.data.total.userTokenBalance)}
+              </p>
+            </div>
+            <div
+              data-aos="fade-left"
+              className="m-2 h-[80px] w-[180px] rounded-lg bg-brandDeepBlue p-2"
+            >
+              <p className="text-xl font-bold text-white">Your Dividends</p>
+              <p className="text-xl font-bold text-white">
+                ${formatCurrency(vidiacData.data.total.userDividends)}
+              </p>
+            </div>
 
-    return (
-        <div className="flex flex-col md:flex-row justify-center py-8">
+            <div
+              data-aos="fade-right"
+              className="m-2 h-[80px] w-[180px] rounded-lg bg-brandDeepBlue p-2"
+            >
+              <p className="text-xl font-bold text-white">Total Dividends</p>
+              <p className="text-xl font-bold text-white">
+                ${formatCurrency(vidiacData.totalDividends)}
+              </p>
+            </div>
+          </div>
+          <div
+            data-aos="fade-up"
+            className="flex m-2 flex-wrap rounded-lg bg-brandLavender"
+          >
+            <BSCAddressCopy />
+          </div>
+        </div>
+        <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
+        <div data-aos="fade-up" className="flex justify-center">
+          <VidiReferral />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default VidiDashboard;
+
+{
+  /*}
           <Card className="max-w-xl shadow-lg xs:m-4 bg-black/60">
             <CardHeader className="bg-transparent rounded-t-lg">
               <p className="text-2xl font-bold text-white sm:text-4xl">Elevate Your Content with Vidiac: 
@@ -61,10 +103,6 @@ const VidiDashboard = () => {
               <p className="sm:text-xl text-lg font-bold text-green-800 mb-4">
                 Total Dividends Distributed: ${formatCurrency(vidiacData.totalDividends)}
               </p>
-                <div>
-                  {/* Uncomment the following line when ready */}
-                  {/* <TotalDivBarChart data={chartData} /> */}
-                </div>
               <section id="user-summary" className="pt-2 border-t">
                 <p className="sm:text-xl text-lg font-bold text-brandBlue">Your Vidiac Snapshot</p>
                 <p className="sm:text-lg text-base font-semibold py-1">
@@ -82,8 +120,5 @@ const VidiDashboard = () => {
             </CardBody>
           </Card>
         </div>
-        
-    );
-};
-
-export default VidiDashboard;
+    */
+}

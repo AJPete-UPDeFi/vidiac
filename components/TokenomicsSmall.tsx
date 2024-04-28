@@ -1,12 +1,19 @@
 // Tokenomics component
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Tokenomics = () => {
     const chartRef = useRef<HTMLCanvasElement>(null);
     const chartInstanceRef = useRef<Chart<"doughnut", number[], string> | null>(null);
 
     useEffect(() => {
+
+      AOS.init();
+        duration: 2000;
+        once: true;
+
         const myChartRef = chartRef.current?.getContext("2d");
 
         // Clean up the previous chart instance if it exists
@@ -45,16 +52,16 @@ const Tokenomics = () => {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false,
-                position: 'bottom',
+                display: true,
+                position: 'right',
                 labels: {
                 color: 'rgb(31, 41, 55)',
                 font: {
-                    size: 24,
+                    size: 12,
                     family: 'sans-serif',
                     weight: 'bolder',
                     },
-                padding: 20,
+                padding: 10,
                 }
             }
             }
@@ -70,9 +77,15 @@ const Tokenomics = () => {
     }, []);
 
   return (
+    <div data-aos="fade-up" className="p-4 set-center">
+      <p className='text-center text-5xl font-extrabold text-gray-900 mb-5'>Tokenomics</p>
+      <p className='text-center text-2xl font-semibold text-gray-900 mb-1'>Total Supply</p>
+      <p className='text-center text-2xl font-semibold text-gray-900 mb-10'>1,000,000 VIDI</p>
+      <p className='text-center text-lg font-semibold text-gray-900 mb-10'>10/10 Buy/Sell tax converted to USDC. 90% sent directly to holders and 10% sent to the featured creator.</p>
     <div style={{ width: '350px', height: '350px' }}>
       <canvas ref={chartRef} />
     </div>
+    </div>  
   );
 }
 

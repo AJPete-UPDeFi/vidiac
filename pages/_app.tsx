@@ -16,6 +16,8 @@ import {
 import { publicProvider } from 'wagmi/providers/public';
 import { NextUIProvider } from '@nextui-org/react';
 import Layout from '../components/Layout';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
