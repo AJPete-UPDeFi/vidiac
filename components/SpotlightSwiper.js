@@ -56,7 +56,10 @@ export default function SpotlightSwiper() {
               alt={`${creatorKey} Icon`}
               className="rounded-full border-2 border-black"
             />
-            <p className="mt-8 text-xl font-bold text-gray-900">
+            <p className="mt-4 text-3xl font-bold text-gray-900">
+              {creator.name}
+            </p>
+            <p className="mt-4 text-lg font-bold text-gray-900">
               {creator.description}
             </p>
             <button

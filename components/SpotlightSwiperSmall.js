@@ -51,14 +51,17 @@ export default function SpotlightSwiperSmall() {
             data-aos="fade-left"
             className="flex flex-col items-center justify-center p-2"
           >
-            <div className="flex w-[150px] justify-center">
+            <div className="flex w-[250px] max-h-[150px] justify-center">
               <img
                 src={creator.image}
                 alt={`${creatorKey} Icon`}
                 className="mt-2 rounded-full border-2 border-black"
               />
             </div>
-            <p className="mt-4 text-sm font-bold text-gray-900">
+            <p className="mt-4 text-lg font-bold text-gray-900">
+              {creator.name}
+            </p>
+            <p className="mt-2 text-sm font-bold text-gray-900">
               {creator.description}
             </p>
             <button
