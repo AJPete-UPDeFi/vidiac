@@ -13,6 +13,7 @@ const VidiReferral = () => {
     const [referralActive, setReferralActive] = useState(false);
     const [refCodeApplied, setRefCodeApplied] = useState(false);
     const [rewardAmount, setRewardAmount] = useState(0);
+    const [referralReserve, setReferralReserve] = useState(0);
     const [error, setError] = useState('');
     const { address: userAddress } = useAccount();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -43,6 +44,13 @@ const VidiReferral = () => {
         address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
         abi: contractsConfig.BSC.VidiacBSCContract.abi,
         functionName: 'referralAmount',
+    });
+
+    const { data: referralReserveData } = useContractRead({
+        address: contractsConfig.BSC.VidiacBSCContract.address as `0x${string}`,
+        abi: contractsConfig.BSC.VidiacBSCContract.abi,
+        functionName: 'balanceOf',
+        args: [contractsConfig.BSC.VidiacBSCContract.address],
     });
 
     const {
@@ -137,9 +145,14 @@ const VidiReferral = () => {
           const formattedRewardAmount = parseFloat(formatEther(rewardAmountBigInt));
           setRewardAmount(formattedRewardAmount); // Update state directly here
         }
+        if (referralReserveData) {
+          const referralReserveBigInt = BigInt(referralReserveData.toString());
+          const formattedReferralReserve = parseFloat(formatEther(referralReserveBigInt));
+          setReferralReserve(formattedReferralReserve); // Update state directly here
+        }
         
         checkWhitelistStatus();
-    }, [referralActiveData, isWhitelistedData, refCodeAppliedData, rewardAmountData, userAddress, contractWriteData, contractWriteError]);
+    }, [referralActiveData, isWhitelistedData, refCodeAppliedData, rewardAmountData, referralReserveData, userAddress, contractWriteData, contractWriteError]);
 
     return (
         <Card className="max-w-xl shadow-lg m-4 mb-10 bg-black/60">
@@ -147,6 +160,7 @@ const VidiReferral = () => {
                 <p className="text-2xl font-bold text-white sm:text-4xl">Have a Referral Code? 
                 <p className='text-xl font-bold py-2 sm:text-3xl'> Apply it here!</p>
                 <p className='text-lg font-semibold sm:text-2xl'>Current Reward Amount: {rewardAmount} VIDI</p>
+                <p className='text-sm font-semibold sm:text-xl'>Referral Tokens Available: {referralReserve.toFixed(2)} VIDI</p>
                 </p>
             </CardHeader>
             <CardBody className="bg-gradient-to-t from-brandLavender to-blue-300 rounded-2xl">
