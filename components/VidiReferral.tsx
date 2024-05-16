@@ -161,6 +161,7 @@ const VidiReferral = () => {
                 <p className='text-xl font-bold py-2 sm:text-3xl'> Apply it here!</p>
                 <p className='text-lg font-semibold sm:text-2xl'>Current Reward Amount: {rewardAmount} VIDI</p>
                 <p className='text-sm font-semibold sm:text-xl'>Referral Tokens Available: {referralReserve.toFixed(2)} VIDI</p>
+                <p className='text-xs font-normal sm:text-lg'>You must have at least 100 VIDI to claim a code.</p>
                 </p>
             </CardHeader>
             <CardBody className="bg-gradient-to-t from-brandLavender to-blue-300 rounded-2xl">
