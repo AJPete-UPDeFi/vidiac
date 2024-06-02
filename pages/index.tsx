@@ -42,6 +42,7 @@ const Vidiac = () => {
           href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
           rel="stylesheet"
         ></link>
+        <link rel="stylesheet" href="https://voltichange.net/css/widget.css"></link>
         <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
       </Head>
 

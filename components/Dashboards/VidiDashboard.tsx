@@ -4,6 +4,7 @@ import { FetchVidiacData } from '../FetchVidiData';
 import ClaimDividends from '../ClaimDividends';
 import BSCAddressCopy from '../VidiBSCAddressCopy';
 import VidiReferral from '../VidiReferral';
+import PolySwap from '../PolySwap';
 import { Divider } from '@nextui-org/react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -72,11 +73,17 @@ const VidiDashboard = () => {
           </div>
           <div
             data-aos="fade-up"
-            className="flex m-2 flex-wrap rounded-lg bg-brandLavender"
+            className="flex m-2 flex-wrap rounded-lg bg-white"
           >
             <BSCAddressCopy />
           </div>
         </div>
+        <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
+        <section id="swap">
+        <div data-aos="fade-up" className="flex justify-center">
+          <PolySwap />
+        </div>
+        </section>
         <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
         <div data-aos="fade-up" className="flex justify-center">
           <VidiReferral />

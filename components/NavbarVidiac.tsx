@@ -39,6 +39,7 @@ export default function NavbarMain() {
     { text: 'Dashboard', href: '/dashboard' },
     { text: 'Creator Spotlight', href: '/creators' },
     { text: 'Merch Store', href: 'https://www.vidiac.shop' },
+    { text: 'Buy VIDI', href: '/dashboard#swap'},
     { text: 'Telegram', href: 'https://t.me/vidiac_token' },
     { text: 'X', href: 'https://twitter.com/UPDefiCrypto' },
     { text: 'Discord', href: 'https://discord.gg/U2B8vhTN2P' },
@@ -60,7 +61,7 @@ export default function NavbarMain() {
           </NavbarItem>
         </NavbarContent>    
   
-      <NavbarMenu className="border-2 font-semibold rounded-lg shadow-md max-w-xs w-[200px] max-h-[270px] top-16 left-8 p-2">
+      <NavbarMenu className="border-2 font-semibold rounded-lg shadow-md max-w-xs w-[200px] max-h-[300px] top-16 left-8 p-2">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.text}-${index}`}>
             <Link
