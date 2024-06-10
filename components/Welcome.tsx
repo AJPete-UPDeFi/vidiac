@@ -19,7 +19,7 @@ const Welcome = () => {
         <p className="text-center font-bold text-2xl text-indigo pr-1">Empower Creators, <p className="text-center font-bold text-2xl text-pink-500">Enrich Yourself!</p></p>
         </div>
         <div className="flex flex-row justify-center mt-4 mb-4 ml-4 mr-4">
-        <button data-aos="fade-right" aria-label='guardiannn-vidi' onClick={() => window.open('https://guardiannn.ai/bsc/token/0x237fa37be83955c62d852b16516e6f4407bf3945', '_blank')} className="bg-indigo-500 hover:bg-indigo-700 text-white text-xs sm:text-lg font-bold py-2 px-4 mr-3 rounded-xl">
+        <button data-aos="fade-right" aria-label='guardiannn-vidi' onClick={() => window.open('/dashboard#swap', '_blank')} className="bg-indigo-500 hover:bg-indigo-700 text-white text-xs sm:text-lg font-bold py-2 px-4 mr-3 rounded-xl">
           Buy Vidiac Tokens
         </button>
         <button data-aos="fade-left" aria-label='Vidiac-Telegram' onClick={() => window.open('https://t.me/vidiac_token', '_blank')} className="bg-purple-500 hover:bg-purple-700 text-white text-xs sm:text-lg font-bold py-2 px-4 rounded-xl">

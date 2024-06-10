@@ -22,9 +22,9 @@ const Creators = () => {
         <div>
           <NavbarVidiac />
         <main className="flex flex-col items-center justify-center">
-
+        {/*
         <p data-aos="fade-up" className="text-5xl text-center font-extrabold text-gray-900 mb-5 mt-10">Featured Creator</p>
-
+       
         <section id="featured" className="flex justify-center justify-items-center mt-5 mb-5 p-2">
           <div className="grid grid-cols-1 xl:grid-cols-2">
           <div data-aos="fade-right" className="hidden sm:flex">
@@ -38,9 +38,9 @@ const Creators = () => {
           </div>
           </div>
         </section>
-
+      ` 
         <Divider className='m-10 xl:max-w-[1200px] lg:max-w-[1000px] md:max-w-[700px] sm:max-w-[600px] max-w-xs'/>
-
+      */}
         <section id="spotlight" data-aos="fade-up" className='mt-10 mb-5 border-2 border-white rounded-2xl p-4'>
         <p className='text-center text-5xl font-extrabold text-gray-900 mb-5'>Partnered Creators</p>
         <section className='justify-center mb-10 hidden md:flex flex-col'>

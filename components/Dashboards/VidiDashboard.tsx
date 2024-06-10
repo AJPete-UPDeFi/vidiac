@@ -80,14 +80,19 @@ const VidiDashboard = () => {
         </div>
         <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
         <section id="swap">
-        <div data-aos="fade-up" className="flex justify-center">
+        <div data-aos="fade-up" className="grid grid-cols-1 justify-items-center lg:grid-cols-2">
+          <div>
           <PolySwap />
+          </div>
+          <div className='mt-10'>
+          <VidiReferral />
+          </div>
         </div>
-        </section>
+        </section>{/*
         <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
         <div data-aos="fade-up" className="flex justify-center">
           <VidiReferral />
-        </div>
+        </div>*/}
       </div>
     </div>
   );
