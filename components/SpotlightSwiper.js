@@ -1,5 +1,5 @@
 // SpotlightSwiper.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { vidiCreatorConfig } from '../utils/vidiCreatorConfig';
 import AOS from 'aos';
@@ -107,7 +107,7 @@ export default function SpotlightSwiper() {
     <div className="mt-10">
       <Swiper
         loop={true}
-        effect={'cards'}
+        effect={''}
         grabCursor={true}
         autoplay={{ delay: 20000, disableOnInteraction: false }}
         modules={[Autoplay, Pagination, Keyboard]}

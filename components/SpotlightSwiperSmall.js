@@ -1,10 +1,10 @@
+// SpotlightSwiperSmall.js
 import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { vidiCreatorConfig } from '../utils/vidiCreatorConfig';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// Import Swiper styles and required modules
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import 'swiper/css/navigation';
@@ -13,10 +13,21 @@ import { Autoplay, EffectCards, Pagination, Keyboard } from 'swiper/modules';
 
 export default function SpotlightSwiperSmall() {
   useEffect(() => {
-    AOS.init();
-    duration: 2000;
-    once: true;
+    AOS.init({ duration: 2000, once: true });
   }, []);
+
+  useEffect(() => {
+    // Reinitialize Instagram embeds whenever the component mounts or updates
+    const script = document.createElement('script');
+    script.src = "//www.instagram.com/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   // Utility to determine video source based on the URL
   const getVideoSrc = (url) => {
     if (url.includes('youtube.com')) {
@@ -36,16 +47,24 @@ export default function SpotlightSwiperSmall() {
   const renderCreatorSlide = (creatorKey) => {
     const creator = vidiCreatorConfig[creatorKey];
     const videoSrc = getVideoSrc(creator.videoUrl);
+    const isInstagram = creator.embedCode;
 
     return (
       <SwiperSlide key={creatorKey} className="bg-white">
         <div className="grid grid-cols-1 items-center justify-center p-2">
           <div data-aos="fade-right" className="p-2">
-            <iframe
-              src={videoSrc}
-              allowFullScreen
-              className="h-[240px] w-full"
-            ></iframe>
+          {isInstagram ? (
+              <div
+                className="instagram-embed"
+                dangerouslySetInnerHTML={{ __html: creator.embedCode }}
+              ></div>
+            ) : (
+              <iframe
+                src={videoSrc}
+                allowFullScreen
+                className="h-[240px] w-full"
+              ></iframe>
+            )}
           </div>
           <div
             data-aos="fade-left"
