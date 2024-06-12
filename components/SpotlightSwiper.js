@@ -1,5 +1,5 @@
 // SpotlightSwiper.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { vidiCreatorConfig } from '../utils/vidiCreatorConfig';
 import AOS from 'aos';
@@ -13,10 +13,9 @@ import { Autoplay, EffectCards, Pagination, Keyboard } from 'swiper/modules';
 
 export default function SpotlightSwiper() {
   useEffect(() => {
-    AOS.init();
-    duration: 2000;
-    once: true;
+    AOS.init({ duration: 2000, once: true });
   }, []);
+
   // Utility to determine video source based on the URL
   const getVideoSrc = (url) => {
     if (url.includes('youtube.com')) {
@@ -33,19 +32,48 @@ export default function SpotlightSwiper() {
     }
   };
 
+  const fetchInstagramEmbedHtml = async (url) => {
+    try {
+      const response = await fetch(`/api/instagram-oembed?url=${encodeURIComponent(url)}`);
+      const data = await response.json();
+      return data.html;
+    } catch (error) {
+      console.error('Error fetching Instagram embed HTML:', error);
+      return '';
+    }
+  };
+
   const renderCreatorSlide = (creatorKey) => {
     const creator = vidiCreatorConfig[creatorKey];
     const videoSrc = getVideoSrc(creator.videoUrl);
+    const isInstagram = creator.videoUrl.includes('instagram.com');
+
+    const [instagramEmbedHtml, setInstagramEmbedHtml] = useState('');
+
+    useEffect(() => {
+      if (isInstagram) {
+        fetchInstagramEmbedHtml(creator.videoUrl).then((html) => {
+          setInstagramEmbedHtml(html);
+        });
+      }
+    }, [creator.videoUrl, isInstagram]);
 
     return (
       <SwiperSlide key={creatorKey} className="bg-white">
         <div className="flex items-center justify-center p-2">
           <div data-aos="fade-right" className="w-5/6 p-2">
-            <iframe
-              src={videoSrc}
-              allowFullScreen
-              className="h-[450px] w-full"
-            ></iframe>
+            {isInstagram ? (
+              <div
+                className="instagram-embed"
+                dangerouslySetInnerHTML={{ __html: instagramEmbedHtml }}
+              ></div>
+            ) : (
+              <iframe
+                src={videoSrc}
+                allowFullScreen
+                className="h-[450px] w-full"
+              ></iframe>
+            )}
           </div>
           <div
             data-aos="fade-left"
@@ -63,20 +91,20 @@ export default function SpotlightSwiper() {
               {creator.description}
             </p>
             <div className="flex gap-4">
-            <button
-              aria-label="Shop Button"
-              onClick={() => window.open(creator.shopLink, '_blank')}
-              className="mt-8 w-[160px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
-            >
-              Shop
-            </button>
-            <button
-              aria-label="Shop Button"
-              onClick={() => window.open(creator.donateLink, '_blank')}
-              className="mt-8 w-[160px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
-            >
-              Donate
-            </button>
+              <button
+                aria-label="Shop Button"
+                onClick={() => window.open(creator.shopLink, '_blank')}
+                className="mt-8 w-[160px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+              >
+                Shop
+              </button>
+              <button
+                aria-label="Donate Button"
+                onClick={() => window.open(creator.donateLink, '_blank')}
+                className="mt-8 w-[160px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+              >
+                Donate
+              </button>
             </div>
           </div>
         </div>

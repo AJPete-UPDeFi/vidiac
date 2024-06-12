@@ -60,5 +60,15 @@ export const vidiCreatorConfig = {
     shopLink: "https://www.vidiac.shop/collections/uhspartan",
     donateLink: "https://www.paypal.com/donate/?hosted_button_id=NVKMACEYJHB8U"
   },
+  jase_lewis_76: {
+    name: "@jase_lewis_76",
+    address: "0x238932ec4033803672c14A7bD26289b89Fc9D3C5",
+    image: "/images/Creators/jase_lewis_76.png",
+    description: "Food over the flame 🔥 and from the kitchen 👨‍🍳",
+    followLink: "https://www.instagram.com/jase_lewis_76/?igsh=MXA5djR0bmpubDl4Nw%3D%3D&utm_source=qr",
+    videoUrl: "https://www.instagram.com/jase_lewis_76/?igsh=MXA5djR0bmpubDl4Nw%3D%3D&utm_source=qr",
+    shopLink: "https://www.vidiac.shop/collections/jase_lewis_76",
+    donateLink: "https://www.paypal.com/donate/?hosted_button_id=NVKMACEYJHB8U"
+  },
   // Add more creators as needed
 };
