@@ -16,6 +16,18 @@ export default function SpotlightSwiper() {
     AOS.init({ duration: 2000, once: true });
   }, []);
 
+  useEffect(() => {
+    // Reinitialize Instagram embeds whenever the component mounts or updates
+    const script = document.createElement('script');
+    script.src = "//www.instagram.com/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   // Utility to determine video source based on the URL
   const getVideoSrc = (url) => {
     if (url.includes('youtube.com')) {
@@ -32,31 +44,10 @@ export default function SpotlightSwiper() {
     }
   };
 
-  const fetchInstagramEmbedHtml = async (url) => {
-    try {
-      const response = await fetch(`/api/instagram-oembed?url=${encodeURIComponent(url)}`);
-      const data = await response.json();
-      return data.html;
-    } catch (error) {
-      console.error('Error fetching Instagram embed HTML:', error);
-      return '';
-    }
-  };
-
   const renderCreatorSlide = (creatorKey) => {
     const creator = vidiCreatorConfig[creatorKey];
     const videoSrc = getVideoSrc(creator.videoUrl);
-    const isInstagram = creator.videoUrl.includes('instagram.com');
-
-    const [instagramEmbedHtml, setInstagramEmbedHtml] = useState('');
-
-    useEffect(() => {
-      if (isInstagram) {
-        fetchInstagramEmbedHtml(creator.videoUrl).then((html) => {
-          setInstagramEmbedHtml(html);
-        });
-      }
-    }, [creator.videoUrl, isInstagram]);
+    const isInstagram = creator.embedCode;
 
     return (
       <SwiperSlide key={creatorKey} className="bg-white">
@@ -65,7 +56,7 @@ export default function SpotlightSwiper() {
             {isInstagram ? (
               <div
                 className="instagram-embed"
-                dangerouslySetInnerHTML={{ __html: instagramEmbedHtml }}
+                dangerouslySetInnerHTML={{ __html: creator.embedCode }}
               ></div>
             ) : (
               <iframe
