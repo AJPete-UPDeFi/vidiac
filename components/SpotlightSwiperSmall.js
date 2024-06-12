@@ -64,13 +64,22 @@ export default function SpotlightSwiperSmall() {
             <p className="mt-2 text-sm font-bold text-gray-900">
               {creator.description}
             </p>
+            <div className="flex gap-2">
             <button
               aria-label="Shop Button"
               onClick={() => window.open(creator.shopLink, '_blank')}
-              className="mt-4 w-[160px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+              className="mt-4 w-[120px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
             >
               Shop
             </button>
+            <button
+              aria-label="Shop Button"
+              onClick={() => window.open(creator.donateLink, '_blank')}
+              className="mt-4 w-[120px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+            >
+              Donate
+            </button>
+            </div>
           </div>
         </div>
       </SwiperSlide>

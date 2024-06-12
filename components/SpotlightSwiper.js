@@ -62,6 +62,7 @@ export default function SpotlightSwiper() {
             <p className="mt-4 text-lg font-bold text-gray-900">
               {creator.description}
             </p>
+            <div className="flex gap-4">
             <button
               aria-label="Shop Button"
               onClick={() => window.open(creator.shopLink, '_blank')}
@@ -69,6 +70,14 @@ export default function SpotlightSwiper() {
             >
               Shop
             </button>
+            <button
+              aria-label="Shop Button"
+              onClick={() => window.open(creator.donateLink, '_blank')}
+              className="mt-8 w-[160px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+            >
+              Donate
+            </button>
+            </div>
           </div>
         </div>
       </SwiperSlide>
