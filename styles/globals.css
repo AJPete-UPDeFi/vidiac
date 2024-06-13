@@ -165,13 +165,13 @@
 
   .spotlight-swiper-container-sm {
     width: 360px;
-    height: 720px;
+    height: 780px;
   }
 
   @media (max-width: 640px) {
     .spotlight-swiper-container-sm {
       width: 360px;
-      height: 720px;
+      height: 780px;
     }
   }
 
