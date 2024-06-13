@@ -77,7 +77,7 @@ export const vidiCreatorConfig = {
     videoUrl:
       'https://www.instagram.com/reel/C2wcsiJN7EX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
     shopLink: 'https://www.vidiac.shop/collections/jase_lewis_76',
-    donateLink: 'https://www.paypal.com/donate/?hosted_button_id=NVKMACEYJHB8U',
+    donateLink: 'https://www.paypal.com/donate/?hosted_button_id=8RX4TXBVDR2BA',
   },
   // Add more creators as needed
 };

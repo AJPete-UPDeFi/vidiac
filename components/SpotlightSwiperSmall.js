@@ -114,7 +114,7 @@ export default function SpotlightSwiperSmall() {
           grabCursor={true}
           keyboard={true}
           autoplay={{
-            delay: 200000,
+            delay: 20000,
             disableOnInteraction: false,
           }}
           modules={[EffectCards, Autoplay, Pagination, Keyboard]}
