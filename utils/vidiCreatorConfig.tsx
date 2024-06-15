@@ -8,7 +8,7 @@ export const vidiCreatorConfig = {
       'Channel to provide key news and information to teach about the Binance Smart Chain (BNB Network) and New Projects. I work with RocketFi on the BSC Network, I also host an AMA group.',
     followLink: 'https://www.youtube.com/@RocketFi.FightinSquirrel',
     videoUrl: 'https://www.youtube.com/watch?v=CZVJNjx4Qvw',
-    shopLink: 'https://www.vidiac.shop/collections/fightinsquirrel',
+    shopLink: 'https://www.vidiac.shop/collections/rocketfi',
     donateLink: 'https://www.paypal.com/donate/?hosted_button_id=V97L4AZBCA7F4',
   },
   VeilRhyme: {
