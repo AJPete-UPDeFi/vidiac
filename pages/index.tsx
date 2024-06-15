@@ -32,8 +32,8 @@ const Vidiac = () => {
           content="Discover Vidiac by UP DeFi, a platform dedicated to amplifying and supporting video creators across various platforms. Join us in reshaping the world of digital content creation."
           name="description"
         />
-        <link href="/images/playbutton1.png" rel="icon" type="image/svg+xml" />
-        <link rel="alternate icon" href="/images/playbutton1.png" />
+        <link href="/images/vidiac_logo.png" rel="icon" type="image/svg+xml" />
+        <link rel="alternate icon" href="/images/vidiac_logo.png" />
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
           rel="stylesheet"

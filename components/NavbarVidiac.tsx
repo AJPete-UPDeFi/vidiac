@@ -56,7 +56,7 @@ export default function NavbarMain() {
         <NavbarContent justify="end">
           <NavbarItem>
             <button aria-label="Vidiac" onClick={() => router.push('/')}>
-            <Image src="/images/playbutton1.png" alt="Vidiac Logo" width={40} height={40} />
+            <Image src="/images/vidiac_logo.png" alt="Vidiac Logo" width={40} height={40} />
             </button>
           </NavbarItem>
         </NavbarContent>    

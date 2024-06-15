@@ -21,7 +21,7 @@ const PolySwap = () => {
                 chainId: 56,
                 decimals: 18,
                 hasTransactonFees: true,
-                logoURI: "https://www.vidiac.co/images/playbutton1.png",
+                logoURI: "https://www.vidiac.co/images/vidiac_logo.png",
                 name: "Vidiac",
                 symbol: "VIDI"
             }
@@ -32,7 +32,7 @@ const PolySwap = () => {
             },
         }}
         overrides={{
-            SwapCardTitle: "<div style=\"display: flex; align-items: center;\"><img src=\"https://www.vidiac.co/images/playbutton1.png\" style=\"width: 30px; height: 30px;\"><p style=\"margin: 0; margin-left: 5px; font-size: 28px;\">Swap</p></div>"
+            SwapCardTitle: "<div style=\"display: flex; align-items: center;\"><img src=\"https://www.vidiac.co/images/vidiac_logo.png\" style=\"width: 30px; height: 30px;\"><p style=\"margin: 0; margin-left: 5px; font-size: 28px;\">Swap</p></div>"
           }}
       />
     </div>
