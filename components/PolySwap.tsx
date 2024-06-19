@@ -1,10 +1,11 @@
+import React from 'react';
 import { PolyswapApp } from "@polyswapai/widget";
 
-const PolySwap = () => {
+const PolySwap: React.FC = () => {
   return (
     <div className="w-full m-2 sm:w-[500px] flex justify-center">
       <PolyswapApp
-        marketer='polyswap-whitelabel'
+        marketer="polyswap-whitelabel"
         chainId={56}
         allowedChainIds={[56]}
         enableDarkMode={true}
@@ -25,7 +26,7 @@ const PolySwap = () => {
                 name: "Vidiac",
                 symbol: "VIDI"
             }
-        ]}  
+        ]}
         defaultSelectedTokenByChains={{
             56: {
                 defaultOutputToken: "0x237FA37Be83955C62d852B16516e6F4407bf3945"
