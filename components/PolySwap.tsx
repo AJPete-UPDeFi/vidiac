@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PolyswapApp } from "@polyswapai/widget";
 
 const PolySwap: React.FC = () => {
+  const apiUrl = "https://www.vidiac.co/api/proxy-polyswap";
+
+  const fetchPrice = async (sellToken: string, buyToken: string, sellAmount: number) => {
+    const url = `${apiUrl}?sellToken=${sellToken}&buyToken=${buyToken}&sellAmount=${sellAmount}&slippagePercentage=0.1201&hasFeeOnTransfer=true&chainId=56`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  };
+
   return (
     <div className="w-full m-2 sm:w-[500px] flex justify-center">
       <PolyswapApp
