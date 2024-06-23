@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PolyswapApp } from "@polyswapai/widget";
 
 const PolySwap: React.FC = () => {
-  const apiUrl = "https://www.vidiac.co/api/proxy-polyswap";
+  const [priceData, setPriceData] = useState(null);
+  const apiUrl = "/api/proxy-polyswap"; // Use relative path to the Vercel API endpoint
 
   const fetchPrice = async (sellToken: string, buyToken: string, sellAmount: number) => {
     const url = `${apiUrl}?sellToken=${sellToken}&buyToken=${buyToken}&sellAmount=${sellAmount}&slippagePercentage=0.1201&hasFeeOnTransfer=true&chainId=56`;
@@ -11,8 +12,27 @@ const PolySwap: React.FC = () => {
     return data;
   };
 
+  useEffect(() => {
+    const getPriceData = async () => {
+      const data = await fetchPrice("BNB", "0x237FA37Be83955C62d852B16516e6F4407bf3945", 1000000000000000000);
+      setPriceData(data);
+    };
+
+    getPriceData();
+  }, []);
+
   return (
-    <div className="w-full m-2 sm:w-[500px] flex justify-center">
+    <div className="w-full m-2 sm:w-[500px] flex flex-col items-center justify-center">
+      <div className="price-data mb-4">
+        {priceData ? (
+          <div>
+            <p>Price Data:</p>
+            <pre>{JSON.stringify(priceData, null, 2)}</pre>
+          </div>
+        ) : (
+          <p>Loading price data...</p>
+        )}
+      </div>
       <PolyswapApp
         marketer="polyswap-whitelabel"
         chainId={56}

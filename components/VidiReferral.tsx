@@ -162,6 +162,9 @@ const VidiReferral = () => {
                 <p className='text-lg font-semibold sm:text-2xl'>Current Reward Amount: {rewardAmount} VIDI</p>
                 <p className='text-sm font-semibold sm:text-xl'>Referral Tokens Available: {referralReserve.toFixed(2)} VIDI</p>
                 <p className='text-xs font-normal sm:text-lg'>You must have at least 100 VIDI to claim a code.</p>
+                <button data-aos="fade-right" aria-label='buy-button' onClick={() => window.open('https://guardiannn.ai/bsc/token/0x237fa37be83955c62d852b16516e6f4407bf3945?pair=0xf067afa4afb51216d2e5677ab7233effe8d119e0', '_blank')} className="bg-indigo-500 hover:bg-indigo-700 text-white text-xs sm:text-lg font-bold py-2 px-4 mr-3 rounded-xl">
+                Buy Vidiac Tokens
+                </button>
                 </p>
             </CardHeader>
             <CardBody className="bg-gradient-to-t from-brandLavender to-blue-300 rounded-2xl">

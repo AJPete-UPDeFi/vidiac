@@ -39,7 +39,7 @@ export default function NavbarMain() {
     { text: 'Dashboard', href: '/dashboard' },
     { text: 'Creator Spotlight', href: '/creators' },
     { text: 'Merch Store', href: 'https://www.vidiac.shop' },
-    { text: 'Buy VIDI', href: '/dashboard#swap'},
+    { text: 'Buy VIDI', href: 'https://guardiannn.ai/bsc/token/0x237fa37be83955c62d852b16516e6f4407bf3945?pair=0xf067afa4afb51216d2e5677ab7233effe8d119e0'},
     { text: 'Telegram', href: 'https://t.me/vidiac_token' },
     { text: 'X', href: 'https://twitter.com/UPDefiCrypto' },
     { text: 'Discord', href: 'https://discord.gg/U2B8vhTN2P' },
