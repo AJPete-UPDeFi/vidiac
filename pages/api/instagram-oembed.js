@@ -7,7 +7,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiUrl = `https://api.instagram.com/oembed?url=${encodeURIComponent(url)}`;
+    const apiUrl = `https://api.instagram.com/oembed?url=${encodeURIComponent(
+      url
+    )}`;
     const response = await axios.get(apiUrl);
     res.json(response.data);
   } catch (error) {

@@ -17,9 +17,7 @@ import 'aos/dist/aos.css';
 
 const Vidiac = () => {
   useEffect(() => {
-    AOS.init();
-    duration: 2000;
-    once: true;
+    AOS.init({ duration: 2000, once: true });
   }, []);
   return (
     <div className="">
@@ -42,7 +40,10 @@ const Vidiac = () => {
           href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
           rel="stylesheet"
         ></link>
-        <link rel="stylesheet" href="https://voltichange.net/css/widget.css"></link>
+        <link
+          rel="stylesheet"
+          href="https://voltichange.net/css/widget.css"
+        ></link>
         <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
       </Head>
 
@@ -94,7 +95,7 @@ const Vidiac = () => {
           data-aos="fade-up"
           className="mx-1 mb-20 mt-10 grid grid-cols-1 justify-items-center p-4 xl:grid-cols-2 "
         >
-          <div className="rounded-2xl border-4 mb-10">
+          <div className="mb-10 rounded-2xl border-4">
             <DividendCalculator />
           </div>
           <div className="hidden grid-cols-1 flex-col rounded-2xl border-4 sm:flex">

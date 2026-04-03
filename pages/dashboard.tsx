@@ -14,9 +14,7 @@ import 'aos/dist/aos.css';
 
 const Dashboard = () => {
   useEffect(() => {
-    AOS.init();
-    duration: 2000;
-    once: true;
+    AOS.init({ duration: 2000, once: true });
   }, []);
   return (
     <div>
@@ -31,17 +29,15 @@ const Dashboard = () => {
             <Divider className="mb-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
             <div
               data-aos="fade-up"
-              className="hidden justify-center m-4 gap-2 p-2 sm:flex "
+              className="m-4 hidden justify-center gap-2 p-2 sm:flex "
             >
               <PCSChart />
-              
             </div>
             <div
               data-aos="fade-up"
-              className="flex flex-col justify-center m-4 gap-2 p-1 sm:hidden"
+              className="m-4 flex flex-col justify-center gap-2 p-1 sm:hidden"
             >
               <PCSChart />
-              
             </div>
           </div>
         </div>

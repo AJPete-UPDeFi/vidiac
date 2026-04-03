@@ -2,7 +2,6 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import React from 'react';
 
-
 type LayoutProps = {
   children: React.ReactNode;
 };

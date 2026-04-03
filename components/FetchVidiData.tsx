@@ -29,12 +29,13 @@ export const FetchVidiacData = () => {
       userDividends: 0,
       userTokenBalance: 0,
       userUnpaidEarnings: 0,
-    }
+    },
   });
 
   //const vidiacETHDistributorAddress = VidiacETHDistributor.address as `0x${string}`;
   //const vidiacETHContractAddress = VidiacETHContract.address as `0x${string}`;
-  const vidiacBSCDistributorAddress = VidiacBSCDistributor.address as `0x${string}`;
+  const vidiacBSCDistributorAddress =
+    VidiacBSCDistributor.address as `0x${string}`;
   const vidiacBSCContractAddress = VidiacBSCContract.address as `0x${string}`;
 
   /*const totalDividendsDataETH = useContractRead({
@@ -108,7 +109,7 @@ export const FetchVidiacData = () => {
     functionName: 'balanceOf',
     args: [address],
     watch: !!address,
-});
+  });
 
   useEffect(() => {
     //let totalDividendsETH = 0;
@@ -125,7 +126,7 @@ export const FetchVidiacData = () => {
     }
 
     // Update the total dividends state regardless of which contracts returned data
-    setTotalDividends(/*totalDividendsETH + */totalDividendsBSC);
+    setTotalDividends(/*totalDividendsETH + */ totalDividendsBSC);
 
     if (!address) return;
 
@@ -137,7 +138,7 @@ export const FetchVidiacData = () => {
     let userUnpaidEarningsBSC = 0;
 
     // Process contract reads for VidiacETH
-  
+
     /*if (userDividendsDataETH) {
         const balanceBigInt = BigInt(userDividendsDataETH.toString());
         userDivsETH = formatToken(balanceBigInt); 
@@ -149,41 +150,46 @@ export const FetchVidiacData = () => {
     if (userETHTokenBalanceData) {
         const balanceBigInt = BigInt(userETHTokenBalanceData.toString());
         userETHBalance = parseFloat(formatEther(balanceBigInt));
-      }*/  
+      }*/
 
     // Process contract reads for VidiacBSC
-    
+
     if (userDividendsDataBSC) {
       const balanceBigInt = BigInt(userDividendsDataBSC.toString());
-      userDivsBSC = formatToken(balanceBigInt); 
-      }
+      userDivsBSC = formatToken(balanceBigInt);
+    }
     if (userUnpaidEarningsDataBSC) {
       const balanceBigInt = BigInt(userUnpaidEarningsDataBSC.toString());
-      userUnpaidEarningsBSC = formatToken(balanceBigInt); 
-      }
+      userUnpaidEarningsBSC = formatToken(balanceBigInt);
+    }
     if (userBSCTokenBalanceData) {
-        const balanceBigInt = BigInt(userBSCTokenBalanceData.toString());
-        userBSCBalance = parseFloat(formatEther(balanceBigInt));
-      }
+      const balanceBigInt = BigInt(userBSCTokenBalanceData.toString());
+      userBSCBalance = parseFloat(formatEther(balanceBigInt));
+    }
 
     setData({
-        /*eth: {
+      /*eth: {
           userDividends: userDivsETH,
           userTokenBalance: userETHBalance,
           userUnpaidEarnings: userUnpaidEarningsETH,
         },*/
-        bsc: {
-          userDividends: userDivsBSC,
-          userTokenBalance: userBSCBalance,
-          userUnpaidEarnings: userUnpaidEarningsBSC,
-        },
-        total: {
-          userDividends: /*userDivsETH + */userDivsBSC,
-          userTokenBalance: /*userETHBalance + */userBSCBalance,
-          userUnpaidEarnings: /*userUnpaidEarningsETH + */userUnpaidEarningsBSC,
-        }
-      });
-  }, [totalDividendsDataBSC.data, address, userDividendsDataBSC, userBSCTokenBalanceData]);
+      bsc: {
+        userDividends: userDivsBSC,
+        userTokenBalance: userBSCBalance,
+        userUnpaidEarnings: userUnpaidEarningsBSC,
+      },
+      total: {
+        userDividends: /*userDivsETH + */ userDivsBSC,
+        userTokenBalance: /*userETHBalance + */ userBSCBalance,
+        userUnpaidEarnings: /*userUnpaidEarningsETH + */ userUnpaidEarningsBSC,
+      },
+    });
+  }, [
+    totalDividendsDataBSC.data,
+    address,
+    userDividendsDataBSC,
+    userBSCTokenBalanceData,
+  ]);
 
   return { totalDividends, data };
 };

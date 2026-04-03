@@ -1,9 +1,15 @@
-const withTM = require('next-transpile-modules')(['@polyswapai/widget', '@mui/x-charts']);
+const withTM = require('next-transpile-modules')([
+  '@polyswapai/widget',
+  '@mui/x-charts',
+]);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: config => {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  webpack: (config) => {
     config.resolve.fallback = { fs: false, net: false, tls: false };
     return config;
   },

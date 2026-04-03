@@ -19,7 +19,7 @@ export default function SpotlightSwiperSmall() {
   useEffect(() => {
     // Reinitialize Instagram embeds whenever the component mounts or updates
     const script = document.createElement('script');
-    script.src = "//www.instagram.com/embed.js";
+    script.src = '//www.instagram.com/embed.js';
     script.async = true;
     document.body.appendChild(script);
 
@@ -53,7 +53,7 @@ export default function SpotlightSwiperSmall() {
       <SwiperSlide key={creatorKey} className="bg-white">
         <div className="grid grid-cols-1 items-center justify-center p-2">
           <div data-aos="fade-right" className="p-2">
-          {isInstagram ? (
+            {isInstagram ? (
               <div
                 className="instagram-embed"
                 dangerouslySetInnerHTML={{ __html: creator.embedCode }}
@@ -70,7 +70,7 @@ export default function SpotlightSwiperSmall() {
             data-aos="fade-left"
             className="flex flex-col items-center justify-center p-2"
           >
-            <div className="flex w-[250px] max-h-[150px] justify-center">
+            <div className="flex max-h-[150px] w-[250px] justify-center">
               <img
                 src={creator.image}
                 alt={`${creatorKey} Icon`}
@@ -84,20 +84,20 @@ export default function SpotlightSwiperSmall() {
               {creator.description}
             </p>
             <div className="flex gap-2">
-            <button
-              aria-label="Shop Button"
-              onClick={() => window.open(creator.shopLink, '_blank')}
-              className="mt-4 w-[120px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
-            >
-              Shop
-            </button>
-            <button
-              aria-label="Shop Button"
-              onClick={() => window.open(creator.donateLink, '_blank')}
-              className="mt-4 w-[120px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
-            >
-              Donate
-            </button>
+              <button
+                aria-label="Shop Button"
+                onClick={() => window.open(creator.shopLink, '_blank')}
+                className="mt-4 w-[120px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+              >
+                Shop
+              </button>
+              <button
+                aria-label="Shop Button"
+                onClick={() => window.open(creator.donateLink, '_blank')}
+                className="mt-4 w-[120px] rounded bg-brandDeepBlue px-4 py-2 font-bold text-white hover:bg-indigo-700"
+              >
+                Donate
+              </button>
             </div>
           </div>
         </div>

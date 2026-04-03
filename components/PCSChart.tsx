@@ -3,7 +3,10 @@ import React from 'react';
 
 const PCSChart = () => {
   return (
-    <div className='flex items-center' style={{ height: '1200px', width: '100%' }}>
+    <div
+      className="flex items-center"
+      style={{ height: '1200px', width: '100%' }}
+    >
       <iframe
         height="100%"
         width="100%"

@@ -50,30 +50,39 @@ export default function NavbarMain() {
   ];
 
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className='custom-navbar'>
-        <NavbarContent className="w-16 h-16 pr-3" justify="start">
+    <Navbar
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      className="custom-navbar"
+    >
+      <NavbarContent className="h-16 w-16 pr-3" justify="start">
         <button aria-label="Open menu">
           <NavbarButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </button>
-        </NavbarContent>
-  
-        <NavbarContent className="pr-3" justify="center">
-          <NavbarBrand>
-            <button aria-label="Vidiac" onClick={() => router.push('/vidiac')}>
-            <Image src="/images/VidiacPlayButton2DLogo.png" alt="Vidiac Logo" width={64} height={64} />
-            </button>
-            <p className="ml-2 font-extrabold text-3xl hidden md:flex">Vidiac</p>
-          </NavbarBrand>
-        </NavbarContent>
-  
-        <NavbarContent justify="end" className='hidden xs:flex'>
-          <NavbarItem>
-            <ConnectButton />
-          </NavbarItem>
-        </NavbarContent>
-      
-  
-      <NavbarMenu className="bg-white border border-gray-200 font-semibold rounded-lg shadow-md max-w-xs w-auto max-h-[450px] top-16 left-8 p-2">
+      </NavbarContent>
+
+      <NavbarContent className="pr-3" justify="center">
+        <NavbarBrand>
+          <button aria-label="Vidiac" onClick={() => router.push('/vidiac')}>
+            <Image
+              src="/images/VidiacPlayButton2DLogo.png"
+              alt="Vidiac Logo"
+              width={64}
+              height={64}
+            />
+          </button>
+          <p className="ml-2 hidden text-3xl font-extrabold md:flex">Vidiac</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent justify="end" className="hidden xs:flex">
+        <NavbarItem>
+          <ConnectButton />
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu className="left-8 top-16 max-h-[450px] w-auto max-w-xs rounded-lg border border-gray-200 bg-white p-2 font-semibold shadow-md">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.text}-${index}`}>
             <Link

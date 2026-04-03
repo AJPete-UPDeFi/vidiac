@@ -19,7 +19,7 @@ export default function SpotlightSwiper() {
   useEffect(() => {
     // Reinitialize Instagram embeds whenever the component mounts or updates
     const script = document.createElement('script');
-    script.src = "//www.instagram.com/embed.js";
+    script.src = '//www.instagram.com/embed.js';
     script.async = true;
     document.body.appendChild(script);
 

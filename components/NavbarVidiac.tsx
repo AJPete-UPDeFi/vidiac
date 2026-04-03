@@ -39,29 +39,43 @@ export default function NavbarMain() {
     { text: 'Dashboard', href: '/dashboard' },
     { text: 'Creator Spotlight', href: '/creators' },
     { text: 'Merch Store', href: 'https://www.vidiac.shop' },
-    { text: 'Buy VIDI', href: 'https://guardiannn.ai/bsc/token/0x237fa37be83955c62d852b16516e6f4407bf3945?pair=0xf067afa4afb51216d2e5677ab7233effe8d119e0'},
+    {
+      text: 'Buy VIDI',
+      href: 'https://guardiannn.ai/bsc/token/0x237fa37be83955c62d852b16516e6f4407bf3945?pair=0xf067afa4afb51216d2e5677ab7233effe8d119e0',
+    },
     { text: 'Telegram', href: 'https://t.me/vidiac_token' },
     { text: 'X', href: 'https://twitter.com/UPDefiCrypto' },
     { text: 'Discord', href: 'https://discord.gg/U2B8vhTN2P' },
   ];
 
   return (
-    <Navbar shouldHideOnScroll isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className='custom-navbar bg-transparent flex-row'>
-        <NavbarContent className="w-16 h-16 pr-3" justify="start">
+    <Navbar
+      shouldHideOnScroll
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      className="custom-navbar flex-row bg-transparent"
+    >
+      <NavbarContent className="h-16 w-16 pr-3" justify="start">
         <button aria-label="Open menu">
           <NavbarButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </button>
-        </NavbarContent>
+      </NavbarContent>
 
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <button aria-label="Vidiac" onClick={() => router.push('/')}>
-            <Image src="/images/vidiac_logo.png" alt="Vidiac Logo" width={40} height={40} />
-            </button>
-          </NavbarItem>
-        </NavbarContent>    
-  
-      <NavbarMenu className="border-2 font-semibold rounded-lg shadow-md max-w-xs w-[200px] max-h-[300px] top-16 left-8 p-2">
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <button aria-label="Vidiac" onClick={() => router.push('/')}>
+            <Image
+              src="/images/vidiac_logo.png"
+              alt="Vidiac Logo"
+              width={40}
+              height={40}
+            />
+          </button>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu className="left-8 top-16 max-h-[300px] w-[200px] max-w-xs rounded-lg border-2 p-2 font-semibold shadow-md">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.text}-${index}`}>
             <Link

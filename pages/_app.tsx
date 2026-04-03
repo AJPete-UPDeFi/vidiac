@@ -50,9 +50,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
         <NextUIProvider>
-        <Layout>
-        <Component {...pageProps} />
-        </Layout>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </NextUIProvider>
       </RainbowKitProvider>
     </WagmiConfig>

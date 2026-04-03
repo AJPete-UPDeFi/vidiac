@@ -11,9 +11,7 @@ import 'aos/dist/aos.css';
 
 const VidiDashboard = () => {
   useEffect(() => {
-    AOS.init();
-    duration: 2000;
-    once: true;
+    AOS.init({ duration: 2000, once: true });
   }, []);
   const vidiacData = FetchVidiacData(); // Use the custom hook to fetch data
 
@@ -73,24 +71,28 @@ const VidiDashboard = () => {
           </div>
           <div
             data-aos="fade-up"
-            className="flex m-2 flex-wrap rounded-lg bg-white"
+            className="m-2 flex flex-wrap rounded-lg bg-white"
           >
             <BSCAddressCopy />
           </div>
         </div>
         <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
         <section id="swap">
-        <div data-aos="fade-up" className="grid grid-cols-1 justify-items-center lg:grid-cols-1">
-          {/*
+          <div
+            data-aos="fade-up"
+            className="grid grid-cols-1 justify-items-center lg:grid-cols-1"
+          >
+            {/*
           <div>
           <PolySwap />
           </div>
           */}
-          <div className='mt-10'>
-          <VidiReferral />
+            <div className="mt-10">
+              <VidiReferral />
+            </div>
           </div>
-        </div>
-        </section>{/*
+        </section>
+        {/*
         <Divider className="mb-8 mt-10 max-w-xs sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1000px] xl:max-w-[1200px]" />
         <div data-aos="fade-up" className="flex justify-center">
           <VidiReferral />

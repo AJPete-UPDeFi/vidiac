@@ -20,9 +20,7 @@ const BSCAddressCopy = () => {
   };
 
   useEffect(() => {
-    AOS.init();
-    duration: 2000;
-    once: true;
+    AOS.init({ duration: 2000, once: true });
   }, []);
 
   return (
